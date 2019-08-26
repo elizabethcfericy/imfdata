@@ -1,0 +1,44 @@
+SELECT DISTINCT country FROM LB_data_1
+WHERE NOT country='United States'
+
+SELECT * FROM LB_data_1
+ORDER BY new_equality_index, code_wdi
+
+SELECT * From LB_data_1
+WHERE ka_eq BETWEEN 0.75 AND 1.0
+
+SELECT * FROM LB_data_1
+WHERE country LIKE 'United%'
+
+SELECT MAX(new_equality_index), country
+FROM LB_data_1
+WHERE new_equality_index >=0.5
+GROUP BY country
+HAVING COUNT(new_equality_index) = 1
+ORDER BY MAX(new_equality_index) DESC
+
+SELECT country FROM LB_data_1
+WHERE EXISTS (SELECT new_equality_index FROM LB_data_2 WHERE LB_data_1.code_ifs= LB_data_2.code_ifs)
+
+SELECT LB_data_1.new_equality_index, LB_data_2.ka_new
+FROM LB_data_1
+INNER JOIN LB_data_2 ON LB_data_1.code_ifs = LB_data_2.code_ifs
+
+SELECT LB_data_1.new_equality_index, LB_data_2.ka_new
+FROM LB_data_1
+LEFT JOIN LB_data_2 ON LB_data_1.code_ifs = LB_data_2.code_ifs
+
+SELECT LB_data_1.new_equality_index, LB_data_2.ka_new, LB_data_2.year
+FROM LB_data_1
+RIGHT JOIN LB_data_2 ON LB_data_1.code_ifs = LB_data_2.code_ifs
+ORDER BY LB_data_1.new_equality_index ASC
+
+SELECT LB_data_1.new_equality_index, LB_data_2.ka_new, LB_data_2.year
+FROM LB_data_1
+FULL OUTER JOIN LB_data_2 ON LB_data_1.code_ifs = LB_data_2.code_ifs
+ORDER BY LB_data_1.new_equality_index ASC
+
+SELECT year FROM LB_data_1
+UNION
+SELECT year FROM LB_data_2
+ORDER BY year ASC
