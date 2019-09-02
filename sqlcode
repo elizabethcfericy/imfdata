@@ -1,5 +1,5 @@
 SELECT DISTINCT country FROM LB_data_1
-WHERE NOT country='United States'
+WHERE country != 'United States'
 
 SELECT * FROM LB_data_1
 ORDER BY new_equality_index, code_wdi
